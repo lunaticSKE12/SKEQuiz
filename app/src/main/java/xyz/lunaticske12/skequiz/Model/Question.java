@@ -1,7 +1,7 @@
 package xyz.lunaticske12.skequiz.Model;
 
 public class Question {
-    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer,categoryId,IsImageQuestion;
+    private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer,CategoryId,IsImageQuestion;
 
     public Question() {
     }
@@ -13,7 +13,7 @@ public class Question {
         AnswerC = answerC;
         AnswerD = answerD;
         CorrectAnswer = correctAnswer;
-        this.categoryId = categoryId;
+        CategoryId = categoryId;
         IsImageQuestion = isImageQuestion;
     }
 
@@ -66,11 +66,11 @@ public class Question {
     }
 
     public String getCategoryId() {
-        return categoryId;
+        return CategoryId;
     }
 
     public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+        CategoryId = categoryId;
     }
 
     public String getIsImageQuestion() {

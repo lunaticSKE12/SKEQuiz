@@ -25,7 +25,7 @@
             android:name=".Start"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".playing"
+            android:name=".Playing"
             android:screenOrientation="portrait" />
         <activity android:name=".Done"></activity>
     </application>

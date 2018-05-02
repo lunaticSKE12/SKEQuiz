@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import xyz.lunaticske12.skequiz.Common.Common;
 import xyz.lunaticske12.skequiz.Model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         User login = dataSnapshot.child(user).getValue(User.class);
                         if(login.getPassword().equals(password)){
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
+                            Common.currentUser = login;
                             startActivity(homeActivity);
                             Toast.makeText(MainActivity.this, "Login success!", Toast.LENGTH_SHORT).show();
                             finish();

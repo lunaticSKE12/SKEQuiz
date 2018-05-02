@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/memphis_colorful"
-    tools:context=".playing">
+    tools:context=".Playing">
 
     <ImageView
         android:id="@+id/question_image"

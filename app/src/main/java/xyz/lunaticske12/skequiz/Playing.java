@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import xyz.lunaticske12.skequiz.Common.Common;
 
-public class playing extends AppCompatActivity implements View.OnClickListener{
+public class Playing extends AppCompatActivity implements View.OnClickListener{
 
     final static long INTERVAL = 1000;
     final static long TIMEOUT = 7000;
@@ -25,9 +25,6 @@ public class playing extends AppCompatActivity implements View.OnClickListener{
     CountDownTimer countDownTimer;
 
     int index=0,score=0,thisQuestion=0,totalQuestion,correctAnswer;
-
-    FirebaseDatabase database;
-    DatabaseReference questions;
 
     ProgressBar progressBar;
     ImageView question_image;
@@ -39,12 +36,11 @@ public class playing extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
-
+        //views
         txtScore = findViewById(R.id.txtScore);
         txtQuestionNum = findViewById(R.id.txtTotalQuestion);
         question_text = findViewById(R.id.question_text);
+        question_image = findViewById(R.id.question_image);
 
         progressBar = findViewById(R.id.progressBar_id);
 
@@ -104,8 +100,9 @@ public class playing extends AppCompatActivity implements View.OnClickListener{
             else {
                 question_text.setText(Common.questionList.get(index).getQuestion());
 
-                question_image.setVisibility(View.VISIBLE);
-                question_text.setVisibility(View.INVISIBLE);
+                //if question is text, set image invisible
+                question_image.setVisibility(View.INVISIBLE);
+                question_text.setVisibility(View.VISIBLE);
             }
 
             btnA.setText(Common.questionList.get(index).getAnswerA());
@@ -131,5 +128,23 @@ public class playing extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onResume(){
         super.onResume();
+
+        totalQuestion = Common.questionList.size();
+
+        countDownTimer = new CountDownTimer(TIMEOUT, INTERVAL) {
+            @Override
+            public void onTick(long minisec) {
+                progressBar.setProgress(progressValue);
+                progressValue++;
+            }
+
+            @Override
+            public void onFinish() {
+
+                countDownTimer.cancel();
+                showQuestion(++index);
+            }
+        };
+        showQuestion(index);
     }
 }
