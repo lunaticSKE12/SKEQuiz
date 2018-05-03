@@ -27,7 +27,8 @@
         <activity
             android:name=".Playing"
             android:screenOrientation="portrait" />
-        <activity android:name=".Done"></activity>
+        <activity android:name=".Done" />
+        <activity android:name=".ScoreDetail"></activity>
     </application>
 
 </manifest>
